@@ -1,19 +1,13 @@
 package com.lypaka.pixelskills.Utils;
 
 import com.lypaka.pixelskills.Config.ConfigManager;
-import com.lypaka.pixelskills.Config.SkillsAccountManager;
-import com.lypaka.pixelskills.PixelSkills;
+
 import org.spongepowered.api.entity.living.player.Player;
 
 public class ConfigGetters {
-    public ConfigGetters (PixelSkills plugin) {
-        this.plugin = plugin;
-        this.accounts = plugin.getAccountGs();
-        this.accountManager = plugin.getAccountManager();
+    public ConfigGetters () {
+
     }
-    private AccountGetters accounts;
-    private PixelSkills plugin;
-    public SkillsAccountManager accountManager;
 
     //------------------------------------------------------------------------------Booleans----------------------------------------------------------------//
 

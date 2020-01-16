@@ -27,17 +27,10 @@ import org.spongepowered.api.text.format.TextColors;
 import java.util.Objects;
 
 public class MainPage {
-    private static SkillsAccountManager accountManager;
 
-    public MainPage(PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-    }
+    private static AccountGetters accounts = PixelSkills.getAccountGs();
 
-    private ConfigGetters config;
-    private static AccountGetters accounts;
-
-    public static void openMainGUI (Player player) {
+    public static void openMainGUI(Player player) {
         StateContainer container = new StateContainer();
         Page.PageBuilder main = Page.builder()
                 .setAutoPaging(false)

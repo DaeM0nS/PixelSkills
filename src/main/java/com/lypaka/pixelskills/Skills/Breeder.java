@@ -16,14 +16,14 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class Breeder {
-    public Breeder (PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.experienceHandler = plugin.getExperienceHandler();
+    public Breeder () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        experienceHandler = PixelSkills.getExperienceHandler();
     }
 
-    private ConfigGetters config;
     private AccountGetters accounts;
+    private ConfigGetters config;
     private ExperienceHandler experienceHandler;
 
     @SubscribeEvent

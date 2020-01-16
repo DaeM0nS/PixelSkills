@@ -19,11 +19,11 @@ import java.util.Optional;
 
 public class ExperienceHandler {
 
-    public ExperienceHandler (PixelSkills plugin) {
-        this.accounts = plugin.getAccountGs();
-        this.config = plugin.getConfigG();
-        this.accountManager = plugin.getAccountManager();
-        this.rewards = plugin.getRewardsHandler();
+    public ExperienceHandler () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        accountManager = PixelSkills.getAccountManager();
+        rewards = PixelSkills.getRewardsHandler();
     }
 
     private AccountGetters accounts;
@@ -144,8 +144,10 @@ public class ExperienceHandler {
                                 }
                                 break;
                         }
+                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You received rewards for hitting level " + lvls[l] + "!"));
                     }
                 }
+
             }
         }
     }

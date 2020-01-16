@@ -12,14 +12,14 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
 public class TreasureHunter {
-    public TreasureHunter (PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.experienceHandler = plugin.getExperienceHandler();
+    public TreasureHunter () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        experienceHandler = PixelSkills.getExperienceHandler();
     }
 
-    private ConfigGetters config;
     private AccountGetters accounts;
+    private ConfigGetters config;
     private ExperienceHandler experienceHandler;
 
     @SubscribeEvent

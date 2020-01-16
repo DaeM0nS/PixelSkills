@@ -8,14 +8,13 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
 public class AccountGetters {
-    public AccountGetters (PixelSkills plugin) {
-        this.plugin = plugin;
-        this.accountManager = plugin.getAccountManager();
-        this.config = plugin.getConfigG();
+    public AccountGetters () {
+        config = PixelSkills.getConfigG();
+        accountManager = PixelSkills.getAccountManager();
     }
-    private PixelSkills plugin;
-    public SkillsAccountManager accountManager;
+
     private ConfigGetters config;
+    private SkillsAccountManager accountManager;
 
     public int getLevel (String skill, Player player) {
         return accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", skill, "Level").getInt();

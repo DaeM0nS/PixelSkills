@@ -33,7 +33,7 @@ import java.util.Random;
         id = "pixelskills",
         name = "PixelSkills",
         version = "2.0.0",
-        description = "A Pixelmon skills plugin",
+        description = "A Pixelmon Generations skills plugin",
         authors = {
                 "Lypaka"
         }
@@ -54,33 +54,33 @@ public class PixelSkills {
     private Logger logger;
 
     public static PixelSkills INSTANCE;
-    private SkillsAccountManager accountManager;
+    private static SkillsAccountManager accountManager;
     private static final Random random = new Random();
-    private ConfigGetters configG;
-    private AccountGetters accounts;
-    private RewardsHandler rewards;
-    private ExperienceHandler experienceHandler;
+    private static ConfigGetters configG;
+    private static AccountGetters accounts;
+    private static RewardsHandler rewards;
+    private static ExperienceHandler experienceHandler;
 
 
     @Listener
     public void onPreInit (GamePreInitializationEvent event) {
-        experienceHandler = new ExperienceHandler(this);
-        configG = new ConfigGetters(this);
-        accounts = new AccountGetters(this);
-        accountManager = new SkillsAccountManager(this);
-        rewards = new RewardsHandler(this);
+        configG = new ConfigGetters();
+        accountManager = new SkillsAccountManager();
+        accounts = new AccountGetters();
+        rewards = new RewardsHandler();
+        experienceHandler = new ExperienceHandler();
         ConfigManager.setup(configDir);
 
-        Pixelmon.EVENT_BUS.register(new Breeder(this));
-        Pixelmon.EVENT_BUS.register(new Catcher(this));
-        Pixelmon.EVENT_BUS.register(new Fisherman(this));
-        Pixelmon.EVENT_BUS.register(new BossConqueror(this));
-        Pixelmon.EVENT_BUS.register(new Botanist(this));
-        Pixelmon.EVENT_BUS.register(new TreasureHunter(this));
-        Pixelmon.EVENT_BUS.register(new Archaeologist(this));
-        Pixelmon.EVENT_BUS.register(new FierceBattler(this));
-        Sponge.getEventManager().registerListeners(this, new Crafter(this));
-        MinecraftForge.EVENT_BUS.register(new Miner(this));
+        Pixelmon.EVENT_BUS.register(new Breeder());
+        Pixelmon.EVENT_BUS.register(new Catcher());
+        Pixelmon.EVENT_BUS.register(new Fisherman());
+        Pixelmon.EVENT_BUS.register(new BossConqueror());
+        Pixelmon.EVENT_BUS.register(new Botanist());
+        Pixelmon.EVENT_BUS.register(new TreasureHunter());
+        Pixelmon.EVENT_BUS.register(new Archaeologist());
+        Pixelmon.EVENT_BUS.register(new FierceBattler());
+        Sponge.getEventManager().registerListeners(this, new Crafter());
+        MinecraftForge.EVENT_BUS.register(new Miner());
 
         Sponge.getCommandManager().register(this, PixelSkillsCmd.create(), "pixelskills");
     }
@@ -97,23 +97,23 @@ public class PixelSkills {
     }
 
 
-    public SkillsAccountManager getAccountManager() {
+    public static SkillsAccountManager getAccountManager() {
         return accountManager;
     }
 
-    public ConfigGetters getConfigG() {
+    public static ConfigGetters getConfigG() {
         return configG;
     }
 
-    public AccountGetters getAccountGs() {
+    public static AccountGetters getAccountGs() {
         return accounts;
     }
 
-    public RewardsHandler getRewardsHandler() {
+    public static RewardsHandler getRewardsHandler() {
         return rewards;
     }
 
-    public ExperienceHandler getExperienceHandler() {
+    public static ExperienceHandler getExperienceHandler() {
         return experienceHandler;
     }
 

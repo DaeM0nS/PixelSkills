@@ -13,23 +13,22 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class SkillsAccountManager {
-
-    public Logger logger;
-    public File accountsFile;
-    public ConfigurationLoader<CommentedConfigurationNode> loader;
-    public ConfigurationNode accountConfig;
+    private Logger logger;
+    private ConfigurationLoader<CommentedConfigurationNode> loader;
+    private ConfigurationNode accountConfig;
     public PixelSkills plugin;
     public ConfigurationNode config;
-    public SkillsAccountManager accountManager;
+    private SkillsAccountManager accountManager;
+    private File accountsFile;
 
-    public SkillsAccountManager (PixelSkills plugin) {
-        this.plugin = plugin;
-        this.accountManager = plugin.getAccountManager();
+    public SkillsAccountManager () {
+        accountManager = PixelSkills.INSTANCE.getAccountManager();
+        logger = PixelSkills.getLogger();
         setupAccountConfig();
     }
 
     private void setupAccountConfig() {
-        accountsFile = new File(plugin.getConfigDir().toFile(), "accounts.conf");
+        accountsFile = new File(PixelSkills.INSTANCE.getConfigDir().toFile(), "accounts.conf");
         loader = HoconConfigurationLoader.builder().setFile(accountsFile).build();
 
         try {
@@ -142,14 +141,8 @@ public class SkillsAccountManager {
         }
     }
 
-    public boolean hasAccount(UUID uuid) {
-        //if (plugin.getConfigDir().toFile(), uuid + ".conf" !=null) {
-        //if (plugin.getConfigDir().toFile().getuuid() != null && plugin.getConfigDir().toFile().getuuid() == uuid + ".conf") {
-        if (accountConfig.getNode(uuid.toString().toString()).getValue() != null) {
-            return true;
-        }
-
-        return false;
+    private boolean hasAccount(UUID uuid) {
+        return accountConfig.getNode(uuid.toString().toString()).getValue() != null;
     }
 
     public void saveConfig() {

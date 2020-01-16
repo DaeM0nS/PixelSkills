@@ -18,14 +18,14 @@ public class Miner {
      * Miner and Archaeologist's mining task are handled in this class, as they fire off the same event
      *
      */
-    public Miner (PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.experienceHandler = plugin.getExperienceHandler();
+    public Miner () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        experienceHandler = PixelSkills.getExperienceHandler();
     }
 
-    private ConfigGetters config;
     private AccountGetters accounts;
+    private ConfigGetters config;
     private ExperienceHandler experienceHandler;
 
     @SubscribeEvent

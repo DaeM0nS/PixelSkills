@@ -24,14 +24,14 @@ public class Crafter {
      *
      **/
 
-    public Crafter (PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.experienceHandler = plugin.getExperienceHandler();
+    public Crafter () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        experienceHandler = PixelSkills.getExperienceHandler();
     }
 
-    private ConfigGetters config;
     private AccountGetters accounts;
+    private ConfigGetters config;
     private ExperienceHandler experienceHandler;
 
     @Listener

@@ -18,16 +18,12 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public class RewardsHandler {
-    public RewardsHandler(PixelSkills plugin) {
-        this.plugin = plugin;
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.accountManager = plugin.getAccountManager();
+    public RewardsHandler() {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
     }
     private ConfigGetters config;
     private AccountGetters accounts;
-    private PixelSkills plugin;
-    private SkillsAccountManager accountManager;
 
     public void giveRewards (String skill, Player player) {
         if (config.getRewardOptions(skill) > 1) {

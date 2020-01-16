@@ -1,9 +1,11 @@
 package com.lypaka.pixelskills.Skills;
 
+import com.lypaka.pixelskills.Config.SkillsAccountManager;
 import com.lypaka.pixelskills.PixelSkills;
 import com.lypaka.pixelskills.Utils.AccountGetters;
 import com.lypaka.pixelskills.Utils.ConfigGetters;
 import com.lypaka.pixelskills.Utils.ExperienceHandler;
+import com.lypaka.pixelskills.Utils.RewardsHandler;
 import com.pixelmonmod.pixelmon.api.events.PixelmonReceivedEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,14 +16,14 @@ import org.spongepowered.api.text.format.TextColors;
 import java.io.IOException;
 
 public class Archaeologist {
-    public Archaeologist (PixelSkills plugin) {
-        this.config = plugin.getConfigG();
-        this.accounts = plugin.getAccountGs();
-        this.experienceHandler = plugin.getExperienceHandler();
+    public Archaeologist () {
+        accounts = PixelSkills.getAccountGs();
+        config = PixelSkills.getConfigG();
+        experienceHandler = PixelSkills.getExperienceHandler();
     }
 
-    private ConfigGetters config;
     private AccountGetters accounts;
+    private ConfigGetters config;
     private ExperienceHandler experienceHandler;
 
     @SubscribeEvent
