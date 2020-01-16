@@ -1,6 +1,7 @@
 package com.lypaka.pixelskills.Config;
 
 import com.lypaka.pixelskills.PixelSkills;
+import com.lypaka.pixelskills.Utils.ConfigGetters;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
@@ -23,7 +24,6 @@ public class SkillsAccountManager {
 
     public SkillsAccountManager (PixelSkills plugin) {
         this.plugin = plugin;
-        this.config = plugin.getConfigNode();
         this.accountManager = plugin.getAccountManager();
         setupAccountConfig();
     }
@@ -47,92 +47,92 @@ public class SkillsAccountManager {
         if (!hasAccount(uuid)) {
             accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Breeder", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Breeder", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Breeder", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Catcher", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Catcher", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Catcher", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Crafter", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "nextPerkIncreaseLevel").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Crafter", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Crafter", "next-perk-increase-level").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Fierce Battler", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Fierce Battler", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Fierce Battler", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Fisherman", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Fisherman", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Fisherman", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Shiny Hunter", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Shiny Hunter", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Shiny Hunter", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Legendary Master", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Legendary Master", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Legendary Master", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Scientist", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Scientist", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Scientist", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Botanist", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Botanist", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Botanist", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Miner", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Miner", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Miner", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Miner", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Miner", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Archaeologist", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Archaeologist", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Archaeologist", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Blacksmith", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Blacksmith", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Blacksmith", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Treasure Hunter", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Treasure Hunter", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Treasure Hunter", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Boss Conqueror", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Boss Conqueror", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Boss Conqueror", "chance-at-perks").setValue(0);
 
             accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "Level").setValue(1);
             accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "EXP").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Poke Exterminator", "EXP", "amount of EXP needed to level up to level 2").getInt());
-            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "nextPerkIncreaseLevel").setValue(0);
-            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "chance at perks").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "EXP-to-Levelup").setValue(ConfigManager.getConfigNode("Skills", "Poke Exterminator", "Basic-settings", "Amount-Needed-For-Level-2").getInt());
+            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "next-perk-increase-level").setValue(0);
+            accountConfig.getNode(uuid.toString(), "Skills", "Poke Exterminator", "chance-at-perks").setValue(0);
             try {
                 loader.save(accountConfig);
             } catch (IOException e) {

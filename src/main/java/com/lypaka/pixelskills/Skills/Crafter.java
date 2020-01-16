@@ -1,12 +1,12 @@
 package com.lypaka.pixelskills.Skills;
 
 import com.lypaka.pixelskills.PixelSkills;
-import com.lypaka.pixelskills.Config.ConfigManager;
-import com.lypaka.pixelskills.Config.SkillsAccountManager;
+import com.lypaka.pixelskills.Utils.AccountGetters;
+import com.lypaka.pixelskills.Utils.ConfigGetters;
+import com.lypaka.pixelskills.Utils.ExperienceHandler;
 import com.pixelmonmod.pixelmon.config.PixelmonItems;
 import com.pixelmonmod.pixelmon.config.PixelmonItemsPokeballs;
 import com.pixelmonmod.pixelmon.config.PixelmonItemsTools;
-import ninja.leaping.configurate.ConfigurationNode;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -25,135 +25,137 @@ public class Crafter {
      **/
 
     public Crafter (PixelSkills plugin) {
-        this.plugin = plugin;
-        this.config = plugin.getConfigNode();
-        this.accountManager = plugin.getAccountManager();
+        this.config = plugin.getConfigG();
+        this.accounts = plugin.getAccountGs();
+        this.experienceHandler = plugin.getExperienceHandler();
     }
 
-    public PixelSkills plugin;
-    public ConfigurationNode config;
-    public SkillsAccountManager accountManager;
+    private ConfigGetters config;
+    private AccountGetters accounts;
+    private ExperienceHandler experienceHandler;
 
     @Listener
     public void onCraft (CraftItemEvent.Craft e, @Root Player player) {
         if (isCrafterItem(e.getCrafted().createStack())) {
-            if (ConfigManager.getConfigNode("Skills", "Crafter", "isEnabled").getValue().equals(true)) {
-                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Crafter", "Level").getInt() < ConfigManager.getConfigNode("Skills", "Crafter", "maxLevel").getInt()) {
-                    //I'm not sure why they would have Crafter enabled but have the only task for it disabled, but here we go
-                    if (ConfigManager.getConfigNode("Skills", "Crafter", "EXP", "Tasks", "Crafting Poke Balls", "isEnabled").getValue().equals(true)) {
-                        int exp = ConfigManager.getConfigNode("Skills", "Crafter", "EXP", "Tasks", "Crafting Poke Balls", "EXP gained per").getInt() * ConfigManager.getConfigNode("Skills", "Crafter", "EXP", "expModifier").getInt();
-                        if (e.getCrafted().getQuantity() > 1) {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp * e.getCrafted().getQuantity() + " Crafter EXP points!"));
-                        } else {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp + " Crafter EXP points!"));
-                        }
-                        plugin.addPoints("Crafter", exp, player);
-                        if (plugin.didLevelUp("Crafter", player)) {
-                            plugin.levelUp("Crafter", player);
-                            if (ConfigManager.getConfigNode("Skills", "Crafter", "Perks", "in-skill perks", "isEnabled").getValue().equals(true)) {
-                                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Crafter", "Level").getInt() == ConfigManager.getConfigNode("Skills", "Crafter", "Perks", "in-skill perks", "perk", "starts at level").getInt() ||
-                                        accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Crafter", "Level").getInt() == accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Crafter", "nextPerkIncreaseLevel").getInt()) {
-                                    if (ConfigManager.getConfigNode("Skills", "Crafter", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt() != 0) {
-                                        if (ConfigManager.getConfigNode("Skills", "Crafter", "Perks", "in-skill perks", "chance gets higher as level gets higher").getValue().equals(true)) {
-                                            int number = accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Crafter", "chance at perks").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        } else {
-                                            int number = ConfigManager.getConfigNode("Skills", "Crafter", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        }
-                                    } else {
+
+            if (config.isSkillEnabled("Crafter")) {
+                if (config.isSkillTaskEnabled("Crafter", "Crafting-Poke-Balls")) {
+                    if (e.getCrafted().getQuantity() > 1) {
+                        experienceHandler.addPoints("Crafter", (config.getEXPFromTask("Crafter", "Crafting-Poke-Balls") * e.getCrafted().getQuantity()), player);
+                    } else {
+                        experienceHandler.addPoints("Crafter", config.getEXPFromTask("Crafter", "Crafting-Poke-Balls"), player);
+                    }
+                    if (config.isSkillPerkEnabled("Crafter")) {
+                        if (accounts.getLevel("Crafter", player) == config.getDefaultPerkLevel("Crafter") || accounts.getLevel("Crafter", player) == accounts.getNextPerkLevel("Crafter", player)) {
+                            accounts.setNextPerkLevel("Crafter", player);
+                            if (config.getDefaultPerkChance("Crafter") > 0) {
+                                if (accounts.getPerkChance("Crafter", player) == 0) {
+                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Crafter")) {
+                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                                    }
+                                } else {
+                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Crafter", player)) {
                                         player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
                                         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                     }
                                 }
+                            } else {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                             }
                         }
                     }
                 }
             }
+
         } else if (isScientistItem(e.getCrafted().createStack())) {
-            if (ConfigManager.getConfigNode("Skills", "Scientist", "isEnabled").getValue().equals(true)) {
-                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Scientist", "Level").getInt() < ConfigManager.getConfigNode("Skills", "Scientist", "maxLevel").getInt()) {
-                    //I'm not sure why they would have Scientist enabled but have the only task for it disabled, but here we go
-                    if (ConfigManager.getConfigNode("Skills", "Scientist", "EXP", "Tasks", "Crafting healing items", "isEnabled").getValue().equals(true)) {
-                        int exp = ConfigManager.getConfigNode("Skills", "Scientist", "EXP", "Tasks", "Crafting healing items", "EXP gained per").getInt() * ConfigManager.getConfigNode("Skills", "Scientist", "EXP", "expModifier").getInt();
-                        if (e.getCrafted().getQuantity() > 1) {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp * e.getCrafted().getQuantity() + " Scientist EXP points!"));
-                        } else {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp + " Scientist EXP points!"));
-                        }
-                        plugin.addPoints("Scientist", exp, player);
-                        if (plugin.didLevelUp("Scientist", player)) {
-                            plugin.levelUp("Scientist", player);
-                            if (ConfigManager.getConfigNode("Skills", "Scientist", "Perks", "in-skill perks", "isEnabled").getValue().equals(true)) {
-                                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Scientist", "Level").getInt() == ConfigManager.getConfigNode("Skills", "Scientist", "Perks", "in-skill perks", "perk", "starts at level").getInt() ||
-                                        accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Scientist", "Level").getInt() == accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Scientist", "nextPerkIncreaseLevel").getInt()) {
-                                    if (ConfigManager.getConfigNode("Skills", "Scientist", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt() != 0) {
-                                        if (ConfigManager.getConfigNode("Skills", "Scientist", "Perks", "in-skill perks", "chance gets higher as level gets higher").getValue().equals(true)) {
-                                            int number = accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Scientist", "chance at perks").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        } else {
-                                            int number = ConfigManager.getConfigNode("Skills", "Scientist", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        }
-                                    } else {
+
+            if (config.isSkillEnabled("Scientist")) {
+                if (config.isSkillTaskEnabled("Scientist", "Crafting-Pixelmon-healing-items")) {
+                    if (e.getCrafted().getQuantity() > 1) {
+                        experienceHandler.addPoints("Scientist", (config.getEXPFromTask("Scientist", "Crafting-Pixelmon-healing-items") * e.getCrafted().getQuantity()), player);
+                    } else {
+                        experienceHandler.addPoints("Scientist", config.getEXPFromTask("Scientist", "Crafting-Pixelmon-healing-items"), player);
+                    }
+                    if (config.isSkillPerkEnabled("Scientist")) {
+                        if (accounts.getLevel("Scientist", player) == config.getDefaultPerkLevel("Scientist") || accounts.getLevel("Scientist", player) == accounts.getNextPerkLevel("Scientist", player)) {
+                            accounts.setNextPerkLevel("Scientist", player);
+                            if (config.getDefaultPerkChance("Scientist") > 0) {
+                                if (accounts.getPerkChance("Scientist", player) == 0) {
+                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Scientist")) {
+                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                                    }
+                                } else {
+                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Scientist", player)) {
                                         player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
                                         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                     }
                                 }
+                            } else {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                             }
                         }
                     }
                 }
             }
         } else if (isBlacksmithItem(e.getCrafted().createStack())) {
-            if (ConfigManager.getConfigNode("Skills", "Blacksmith", "isEnabled").getValue().equals(true)) {
-                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Blacksmith", "Level").getInt() < ConfigManager.getConfigNode("Skills", "Blacksmith", "maxLevel").getInt()) {
-                    if (ConfigManager.getConfigNode("Skills", "Blacksmith", "EXP", "Tasks", "Crafting Pixelmon tools", "isEnabled").getValue().equals(true)) {
-                        int exp = ConfigManager.getConfigNode("Skills", "Blacksmith", "EXP", "Tasks", "Crafting Pixelmon tools", "EXP gained per").getInt() * ConfigManager.getConfigNode("Skills", "Blacksmith", "EXP", "expModifier").getInt();
-                        if (e.getCrafted().getQuantity() > 1) {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp * e.getCrafted().getQuantity() + " Blacksmith EXP points!"));
-                        } else {
-                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp + " Blacksmith EXP points!"));
-                        }
-                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You gained " + exp + " Blacksmith EXP points!"));
-                        plugin.addPoints("Blacksmith", exp, player);
-                        if (plugin.didLevelUp("Blacksmith", player)) {
-                            plugin.levelUp("Blacksmith", player);
-                            if (ConfigManager.getConfigNode("Skills", "Blacksmith", "Perks", "in-skill perks", "isEnabled").getValue().equals(true)) {
-                                if (accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Blacksmith", "Level").getInt() == ConfigManager.getConfigNode("Skills", "Blacksmith", "Perks", "in-skill perks", "perk", "starts at level").getInt() ||
-                                        accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Blacksmith", "Level").getInt() == accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Blacksmith", "nextPerkIncreaseLevel").getInt()) {
-                                    if (ConfigManager.getConfigNode("Skills", "Blacksmith", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt() != 0) {
-                                        if (ConfigManager.getConfigNode("Skills", "Blacksmith", "Perks", "in-skill perks", "chance gets higher as level gets higher").getValue().equals(true)) {
-                                            int number = accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", "Blacksmith", "chance at perks").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        } else {
-                                            int number = ConfigManager.getConfigNode("Skills", "Blacksmith", "Perks", "in-skill perks", "chance of triggering at task completed (1/<number>)").getInt();
-                                            if (PixelSkills.getRandom().nextInt(100) < number) {
-                                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                            }
-                                        }
-                                    } else {
+
+            if (config.isSkillEnabled("Blacksmith")) {
+                if (config.isSkillTaskEnabled("Blacksmith", "Crafting-Pixelmon-tools")) {
+                    if (e.getCrafted().getQuantity() > 1) {
+                        experienceHandler.addPoints("Blacksmith", (config.getEXPFromTask("Blacksmith", "Crafting-Pixelmon-tools") * e.getCrafted().getQuantity()), player);
+                    } else {
+                        experienceHandler.addPoints("Blacksmith", config.getEXPFromTask("Blacksmith", "Crafting-Pixelmon-tools"), player);
+                    }
+                    if (config.isSkillPerkEnabled("Blacksmith")) {
+                        if (accounts.getLevel("Blacksmith", player) == config.getDefaultPerkLevel("Blacksmith") || accounts.getLevel("Blacksmith", player) == accounts.getNextPerkLevel("Blacksmith", player)) {
+                            accounts.setNextPerkLevel("Blacksmith", player);
+                            if (config.getDefaultPerkChance("Blacksmith") > 0) {
+                                if (accounts.getPerkChance("Blacksmith", player) == 0) {
+                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
+                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                                    }
+                                } else {
+                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Blacksmith", player)) {
                                         player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
                                         Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                     }
                                 }
+                            } else {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                            }
+                        }
+                    }
+
+                } else if (config.isSkillTaskEnabled("Blacksmith", "Crafting-vanilla-tools")) {
+                    if (e.getCrafted().getQuantity() > 1) {
+                        experienceHandler.addPoints("Blacksmith", (config.getEXPFromTask("Blacksmith", "Crafting-vanilla-tools") * e.getCrafted().getQuantity()), player);
+                    } else {
+                        experienceHandler.addPoints("Blacksmith", config.getEXPFromTask("Blacksmith", "Crafting-vanilla-tools"), player);
+                    }
+                    if (config.isSkillPerkEnabled("Blacksmith")) {
+                        if (accounts.getLevel("Blacksmith", player) == config.getDefaultPerkLevel("Blacksmith") || accounts.getLevel("Blacksmith", player) == accounts.getNextPerkLevel("Blacksmith", player)) {
+                            accounts.setNextPerkLevel("Blacksmith", player);
+                            if (config.getDefaultPerkChance("Blacksmith") > 0) {
+                                if (accounts.getPerkChance("Blacksmith", player) == 0) {
+                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
+                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                                    }
+                                } else {
+                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Blacksmith", player)) {
+                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
+                                    }
+                                }
+                            } else {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                             }
                         }
                     }

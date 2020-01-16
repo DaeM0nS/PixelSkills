@@ -9,6 +9,9 @@ import com.codehusky.huskyui.states.element.Element;
 import com.google.common.collect.Lists;
 import com.lypaka.pixelskills.PixelSkills;
 import com.lypaka.pixelskills.Config.SkillsAccountManager;
+import com.lypaka.pixelskills.Utils.AccountGetters;
+import com.lypaka.pixelskills.Utils.ConfigGetters;
+import com.lypaka.pixelskills.Utils.ExperienceHandler;
 import com.pixelmonmod.pixelmon.config.*;
 import com.pixelmonmod.pixelmon.items.PixelmonItemBlock;
 import ninja.leaping.configurate.ConfigurationNode;
@@ -27,12 +30,12 @@ public class MainPage {
     private static SkillsAccountManager accountManager;
 
     public MainPage(PixelSkills plugin) {
-        this.plugin = plugin;
-        this.config = plugin.getConfigNode();
-        this.accountManager = plugin.getAccountManager();
+        this.config = plugin.getConfigG();
+        this.accounts = plugin.getAccountGs();
     }
-    public PixelSkills plugin;
-    public ConfigurationNode config;
+
+    private ConfigGetters config;
+    private static AccountGetters accounts;
 
     public static void openMainGUI (Player player) {
         StateContainer container = new StateContainer();
@@ -798,22 +801,16 @@ public class MainPage {
         return container;
     }
 
-    public static int getlevelfromSkill(String skill, Player player) {
-        ConfigurationNode node = new SkillsAccountManager(PixelSkills.INSTANCE).accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", skill, "Level");
-        int level = node.getInt();
-        return level;
+    private static int getlevelfromSkill(String skill, Player player) {
+        return accounts.getLevel(skill, player);
     }
 
-    public static int getEXPfromSkill (String skill, Player player) {
-        ConfigurationNode node = new SkillsAccountManager(PixelSkills.INSTANCE).accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", skill, "EXP");
-        int exp = node.getInt();
-        return exp;
+    private static int getEXPfromSkill(String skill, Player player) {
+        return accounts.getEXP(skill, player);
     }
 
-    public static int getEXPTOLEVELUPfromSkill (String skill, Player player) {
-        ConfigurationNode node = new SkillsAccountManager(PixelSkills.INSTANCE).accountManager.getAccountsConfig().getNode(player.getUniqueId().toString(), "Skills", skill, "EXP-to-Levelup");
-        int exp2l = node.getInt();
-        return exp2l;
+    private static int getEXPTOLEVELUPfromSkill(String skill, Player player) {
+        return accounts.getEXPtoLvl(skill, player);
     }
 
 }
