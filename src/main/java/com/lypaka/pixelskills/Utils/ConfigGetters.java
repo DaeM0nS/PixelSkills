@@ -53,7 +53,7 @@ public class ConfigGetters {
         return ConfigManager.getConfigNode("Skills", skill, "Basic-settings", "Max-Level").getInt();
     }
 
-    public int getEXPModifier (String skill, Player player) {
+    int getEXPModifier(String skill, Player player) {
         if (player.hasPermission(skill.toLowerCase().replace(" ", "") + ".specialmodifier")) {
             return ConfigManager.getConfigNode("Skills", skill, "EXP", "EXP-Modifiers", "Permission").getInt();
         } else {
@@ -62,11 +62,11 @@ public class ConfigGetters {
     }
 
     public int getDefaultPerkChance (String skill) {
-        return ConfigManager.getConfigNode("Skills", skill, "Perks", "Chance-of-triggering", "Default-chance").getInt();
+        return ConfigManager.getConfigNode("Skills", skill, "Perks", "Chance-of-triggering").getInt();
     }
 
     public int getDefaultPerkLevel (String skill) {
-        return ConfigManager.getConfigNode("Skills", skill, "Perks", "Chance-of-triggering", "Starts-at-level").getInt();
+        return ConfigManager.getConfigNode("Skills", skill, "Perks", "Level-settings", "Starts-on").getInt();
     }
 
     public int getDefaultRewardChance (String skill) {

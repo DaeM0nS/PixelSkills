@@ -41,16 +41,9 @@ public class Miner {
                         if (accounts.getLevel("Miner", player) == config.getDefaultPerkLevel("Miner") || accounts.getLevel("Miner", player) == accounts.getNextPerkLevel("Miner", player)) {
                             accounts.setNextPerkLevel("Miner", player);
                             if (config.getDefaultPerkChance("Miner") > 0) {
-                                if (accounts.getPerkChance("Miner", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Miner")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Miner", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Miner")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
@@ -70,16 +63,9 @@ public class Miner {
                         if (accounts.getLevel("Miner", player) == config.getDefaultPerkLevel("Miner") || accounts.getLevel("Miner", player) == accounts.getNextPerkLevel("Miner", player)) {
                             accounts.setNextPerkLevel("Miner", player);
                             if (config.getDefaultPerkChance("Miner") > 0) {
-                                if (accounts.getPerkChance("Miner", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Miner")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Miner", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Miner")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getState().getBlock().toString().replace("{", "").replace("{", "").replace("block", "") + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a thick chunk of ore! You found two more pieces!"));
@@ -90,25 +76,18 @@ public class Miner {
                 }
             }
 
-        } else if (e.getState().getBlock().toString().contains("pixelmon:fossil")) {
+        } else if (e.getState().getBlock().toString().contains("pixelmon:fossil") && !e.getState().getBlock().toString().contains("machine")) {
 
             if (config.isSkillEnabled("Archaeologist")) {
-                if (config.isSkillTaskEnabled("Archaeologist", "Reviving-Fossils")) {
-                    experienceHandler.addPoints("Archaeologist", config.getEXPFromTask("Archaeologist", "Reviving-Fossils"), player);
+                if (config.isSkillTaskEnabled("Archaeologist", "Mining-Fossils")) {
+                    experienceHandler.addPoints("Archaeologist", config.getEXPFromTask("Archaeologist", "Mining-Fossils"), player);
                     if (config.isSkillPerkEnabled("Archaeologist")) {
-                        if (accounts.getLevel("Archaeologist", player) == config.getDefaultPerkLevel("Archaeologist") || accounts.getLevel("Archaeologist", player) == accounts.getNextPerkLevel("Archaeologist", player)) {
+                        if (accounts.getLevel("Archaeologist", player) == accounts.getNextPerkLevel("Archaeologist", player)) {
                             accounts.setNextPerkLevel("Archaeologist", player);
                             if (config.getDefaultPerkChance("Archaeologist") > 0) {
-                                if (accounts.getPerkChance("Archaeologist", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Archaeologist")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a big fossil! You found one more fossil!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:fossil 1");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Archaeologist", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a big fossil! You found one more fossil!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:fossil 1");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Archaeologist")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a big fossil! You found one more fossil!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:fossil 1");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " That was a big fossil! You found one more fossil!"));
@@ -122,19 +101,13 @@ public class Miner {
 
     }
 
-    public boolean isPixelmonOre (String name) {
-        if (name.contains("thunder_stone_ore") || name.contains("leaf_stone_ore") || name.contains("water_stone_ore") || name.contains("fire_stone_ore") || name.contains("dawn_dusk_ore") || name.contains("bauxite_ore") || name.contains("sun_stone_ore") ||
-            name.contains("ruby_ore") || name.contains("sapphire_ore") || name.contains("amethyst_ore") || name.contains("crystal_ore") || name.contains("silicon_ore") || name.contains("icestoneore")) {
-            return true;
-        }
-        return false;
+    private boolean isPixelmonOre(String name) {
+        return name.contains("thunder_stone_ore") || name.contains("leaf_stone_ore") || name.contains("water_stone_ore") || name.contains("fire_stone_ore") || name.contains("dawn_dusk_ore") || name.contains("bauxite_ore") || name.contains("sun_stone_ore") ||
+                name.contains("ruby_ore") || name.contains("sapphire_ore") || name.contains("amethyst_ore") || name.contains("crystal_ore") || name.contains("silicon_ore") || name.contains("icestoneore");
     }
 
-    public boolean isVanillaOre (String name) {
-        if (name.contains("emerald_ore") || name.contains("lapis_ore") || name.contains("diamond_ore") || name.contains("redstone_ore") || name.contains("gold_ore") || name.contains("iron_ore") ||
-            name.contains("coal_ore") || name.contains("quartz_ore")) {
-            return true;
-        }
-        return false;
+    private boolean isVanillaOre(String name) {
+        return name.contains("emerald_ore") || name.contains("lapis_ore") || name.contains("diamond_ore") || name.contains("redstone_ore") || name.contains("gold_ore") || name.contains("iron_ore") ||
+                name.contains("coal_ore") || name.contains("quartz_ore");
     }
 }

@@ -2,9 +2,9 @@ package com.lypaka.pixelskills;
 
 import com.google.inject.Inject;
 import com.lypaka.pixelskills.Commands.PixelSkillsCmd;
-import com.lypaka.pixelskills.Skills.*;
 import com.lypaka.pixelskills.Config.ConfigManager;
 import com.lypaka.pixelskills.Config.SkillsAccountManager;
+import com.lypaka.pixelskills.Skills.*;
 import com.lypaka.pixelskills.Utils.AccountGetters;
 import com.lypaka.pixelskills.Utils.ConfigGetters;
 import com.lypaka.pixelskills.Utils.ExperienceHandler;

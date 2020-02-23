@@ -26,23 +26,16 @@ public class TreasureHunter {
     public void onPokeLootOpen (PokeLootClaimedEvent e) {
         Player player = (Player) e.player;
 
-        if (config.isSkillEnabled("Treasure Hunter")) {
-            if (config.isSkillTaskEnabled("Treasure Hunter", "Opening-PokeLoot-chests")) {
-                experienceHandler.addPoints("Treasure Hunter", config.getEXPFromTask("Treasure Hunter", "Opening-PokeLoot-chests"), player);
-                if (config.isSkillPerkEnabled("Treasure Hunter")) {
-                    if (accounts.getLevel("Treasure Hunter", player) == config.getDefaultPerkLevel("Treasure Hunter") || accounts.getLevel("Treasure Hunter", player) == accounts.getNextPerkLevel("Treasure Hunter", player)) {
-                        accounts.setNextPerkLevel("Treasure Hunter", player);
-                        if (config.getDefaultPerkChance("Treasure Hunter") > 0) {
-                            if (accounts.getPerkChance("Treasure Hunter", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Treasure Hunter")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The chest contained another chest!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.chest.toString() + " 1");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Treasure Hunter", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The chest contained another chest!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.chest.toString() + " 1");
-                                }
+        if (config.isSkillEnabled("Treasure-Hunter")) {
+            if (config.isSkillTaskEnabled("Treasure-Hunter", "Opening-PokeLoot-chests")) {
+                experienceHandler.addPoints("Treasure-Hunter", config.getEXPFromTask("Treasure-Hunter", "Opening-PokeLoot-chests"), player);
+                if (config.isSkillPerkEnabled("Treasure-Hunter")) {
+                    if (accounts.getLevel("Treasure-Hunter", player) == config.getDefaultPerkLevel("Treasure-Hunter") || accounts.getLevel("Treasure-Hunter", player) == accounts.getNextPerkLevel("Treasure-Hunter", player)) {
+                        accounts.setNextPerkLevel("Treasure-Hunter", player);
+                        if (config.getDefaultPerkChance("Treasure-Hunter") > 0) {
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Treasure-Hunter")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The chest contained another chest!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.chest.toString() + " 1");
                             }
                         } else {
                             player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The chest contained another chest!"));

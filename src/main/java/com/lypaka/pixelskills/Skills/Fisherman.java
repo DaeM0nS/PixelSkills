@@ -34,16 +34,9 @@ public class Fisherman {
                     if (accounts.getLevel("Fisherman", player) == config.getDefaultPerkLevel("Fisherman") || accounts.getLevel("Fisherman", player) == accounts.getNextPerkLevel("Fisherman", player)) {
                         accounts.setNextPerkLevel("Fisherman", player);
                         if (config.getDefaultPerkChance("Fisherman") > 0) {
-                            if (accounts.getPerkChance("Fisherman", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Fisherman")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " A Poke Ball got fished up with the Pokemon!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + "pixelmon:poke_ball 1");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Fisherman", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " A Poke Ball got fished up with the Pokemon!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + "pixelmon:poke_ball 1");
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Fisherman")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " A Poke Ball got fished up with the Pokemon!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + "pixelmon:poke_ball 1");
                             }
                         } else {
                             player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " A Poke Ball got fished up with the Pokemon!"));

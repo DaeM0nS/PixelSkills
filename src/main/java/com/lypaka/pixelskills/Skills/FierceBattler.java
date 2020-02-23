@@ -35,34 +35,21 @@ public class FierceBattler {
     public void onTrainerDefeat (BeatTrainerEvent e) {
         Player player = (Player) e.player;
 
-        if (config.isSkillEnabled("Fierce Battler")) {
-            if (config.isSkillTaskEnabled("Fierce Battler", "Defeating-NPCTrainers")) {
-                experienceHandler.addPoints("Fierce Battler", config.getEXPFromTask("Fierce Battler", "Defeating-NPCTrainers"), player);
-                if (config.isSkillPerkEnabled("Fierce Battler")) {
-                    if (accounts.getLevel("Fierce Battler", player) == config.getDefaultPerkLevel("Fierce Battler") || accounts.getLevel("Fierce Battler", player) == accounts.getNextPerkLevel("Fierce Battler", player)) {
-                        accounts.setNextPerkLevel("Fierce Battler", player);
-                        if (config.getDefaultPerkChance("Fierce Battler") > 0) {
-                            if (accounts.getPerkChance("Fierce Battler", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Fierce Battler")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The Trainer paid a little extra money!"));
-                                    EventContext eventContext = EventContext.builder().add(EventContextKeys.PLUGIN, PixelSkills.getContainer()).build();
-                                    Optional<EconomyService> econ = Sponge.getServiceManager().provide(EconomyService.class);
-                                    if (econ.isPresent()) {
-                                        Optional<UniqueAccount> a = econ.get().getOrCreateAccount(player.getUniqueId());
-                                        Currency defaultCur = econ.get().getDefaultCurrency();
-                                        a.get().deposit(defaultCur, BigDecimal.valueOf((e.trainer.getWinMoney() + (e.trainer.getWinMoney() * 0.25))), Cause.of(eventContext, PixelSkills.getContainer()));
-                                    }
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Fierce Battler", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The Trainer paid a little extra money!"));
-                                    EventContext eventContext = EventContext.builder().add(EventContextKeys.PLUGIN, PixelSkills.getContainer()).build();
-                                    Optional<EconomyService> econ = Sponge.getServiceManager().provide(EconomyService.class);
-                                    if (econ.isPresent()) {
-                                        Optional<UniqueAccount> a = econ.get().getOrCreateAccount(player.getUniqueId());
-                                        Currency defaultCur = econ.get().getDefaultCurrency();
-                                        a.get().deposit(defaultCur, BigDecimal.valueOf((e.trainer.getWinMoney() + (e.trainer.getWinMoney() * 0.25))), Cause.of(eventContext, PixelSkills.getContainer()));
-                                    }
+        if (config.isSkillEnabled("Fierce-Battler")) {
+            if (config.isSkillTaskEnabled("Fierce-Battler", "Defeating-NPCTrainers")) {
+                experienceHandler.addPoints("Fierce-Battler", config.getEXPFromTask("Fierce-Battler", "Defeating-NPCTrainers"), player);
+                if (config.isSkillPerkEnabled("Fierce-Battler")) {
+                    if (accounts.getLevel("Fierce-Battler", player) == config.getDefaultPerkLevel("Fierce-Battler") || accounts.getLevel("Fierce-Battler", player) == accounts.getNextPerkLevel("Fierce-Battler", player)) {
+                        accounts.setNextPerkLevel("Fierce-Battler", player);
+                        if (config.getDefaultPerkChance("Fierce-Battler") > 0) {
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Fierce-Battler")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The Trainer paid a little extra money!"));
+                                EventContext eventContext = EventContext.builder().add(EventContextKeys.PLUGIN, PixelSkills.getContainer()).build();
+                                Optional<EconomyService> econ = Sponge.getServiceManager().provide(EconomyService.class);
+                                if (econ.isPresent()) {
+                                    Optional<UniqueAccount> a = econ.get().getOrCreateAccount(player.getUniqueId());
+                                    Currency defaultCur = econ.get().getDefaultCurrency();
+                                    a.get().deposit(defaultCur, BigDecimal.valueOf((e.trainer.getWinMoney() + (e.trainer.getWinMoney() * 0.25))), Cause.of(eventContext, PixelSkills.getContainer()));
                                 }
                             }
                         } else {

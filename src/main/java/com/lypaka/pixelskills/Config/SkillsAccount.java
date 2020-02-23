@@ -6,8 +6,8 @@ import ninja.leaping.configurate.ConfigurationNode;
 import java.util.UUID;
 
 public class SkillsAccount {
-    public PixelSkills plugin;
-    public SkillsAccountManager accountManager;
+    private PixelSkills plugin;
+    private SkillsAccountManager accountManager;
     public UUID uuid;
     public ConfigurationNode skillsAccountsConfig;
 

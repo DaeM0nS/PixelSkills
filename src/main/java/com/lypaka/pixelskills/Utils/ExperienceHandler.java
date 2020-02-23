@@ -59,12 +59,7 @@ public class ExperienceHandler {
         accounts.setLevel(skill, player, accounts.getLevel(skill, player) + 1);
         accounts.setNextEXPLvl(skill, player);
         player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your " + skill + " skill has increased to level " + accounts.getLevel(skill, player)));
-        //-------Perk chance------//
-        if (accounts.getLevel(skill, player) == config.getDefaultPerkLevel(skill) || accounts.getLevel(skill, player) == accounts.getNextPerkLevel(skill, player)) {
-            if (config.doesSkillPerkChanceIncrease(skill)) {
-                accounts.setPerkChance(skill, player);
-            }
-        }
+
 
         //-------Rewards-------//
         if (config.isSkillRewardsEnabled(skill)) {

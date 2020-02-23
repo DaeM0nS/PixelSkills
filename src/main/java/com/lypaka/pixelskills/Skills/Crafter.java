@@ -49,16 +49,9 @@ public class Crafter {
                         if (accounts.getLevel("Crafter", player) == config.getDefaultPerkLevel("Crafter") || accounts.getLevel("Crafter", player) == accounts.getNextPerkLevel("Crafter", player)) {
                             accounts.setNextPerkLevel("Crafter", player);
                             if (config.getDefaultPerkChance("Crafter") > 0) {
-                                if (accounts.getPerkChance("Crafter", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Crafter")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Crafter", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Crafter")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
@@ -82,16 +75,9 @@ public class Crafter {
                         if (accounts.getLevel("Scientist", player) == config.getDefaultPerkLevel("Scientist") || accounts.getLevel("Scientist", player) == accounts.getNextPerkLevel("Scientist", player)) {
                             accounts.setNextPerkLevel("Scientist", player);
                             if (config.getDefaultPerkChance("Scientist") > 0) {
-                                if (accounts.getPerkChance("Scientist", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Scientist")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Scientist", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Scientist")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
@@ -114,16 +100,9 @@ public class Crafter {
                         if (accounts.getLevel("Blacksmith", player) == config.getDefaultPerkLevel("Blacksmith") || accounts.getLevel("Blacksmith", player) == accounts.getNextPerkLevel("Blacksmith", player)) {
                             accounts.setNextPerkLevel("Blacksmith", player);
                             if (config.getDefaultPerkChance("Blacksmith") > 0) {
-                                if (accounts.getPerkChance("Blacksmith", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Blacksmith", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
@@ -142,16 +121,9 @@ public class Crafter {
                         if (accounts.getLevel("Blacksmith", player) == config.getDefaultPerkLevel("Blacksmith") || accounts.getLevel("Blacksmith", player) == accounts.getNextPerkLevel("Blacksmith", player)) {
                             accounts.setNextPerkLevel("Blacksmith", player);
                             if (config.getDefaultPerkChance("Blacksmith") > 0) {
-                                if (accounts.getPerkChance("Blacksmith", player) == 0) {
-                                    if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
-                                } else {
-                                    if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Blacksmith", player)) {
-                                        player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
-                                        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
-                                    }
+                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Blacksmith")) {
+                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
+                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.getCrafted().getType().getName() + " 2");
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some leftover material and made more!"));
@@ -164,32 +136,26 @@ public class Crafter {
         }
     }
 
-    public boolean isScientistItem(ItemStack is) {
-        if (is.getType().matches(ItemStack.of((ItemType) PixelmonItems.potion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.superPotion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.hyperPotion))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.fullRestore)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxPotion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.parlyzHeal))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.antidote)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.burnHeal)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.iceHeal))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.iceHeal)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.revive)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxRevive))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.elixir)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxElixir)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.ether))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxEther))) {
-            return true;
-        }
-        return false;
+    private boolean isScientistItem(ItemStack is) {
+        return is.getType().matches(ItemStack.of((ItemType) PixelmonItems.potion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.superPotion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.hyperPotion))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.fullRestore)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxPotion)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.parlyzHeal))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.antidote)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.burnHeal)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.iceHeal))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.iceHeal)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.revive)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxRevive))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.elixir)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxElixir)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.ether))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItems.maxEther));
     }
 
     public boolean isCrafterItem (ItemStack is) {
-        if (is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.beastBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.cherishBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.diveBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.dreamBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.duskBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.fastBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.friendBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.greatBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.gsBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.healBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.heavyBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.levelBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.loveBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.lureBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.luxuryBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.moonBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.nestBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.netBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.masterBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.parkBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.pokeBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.quickBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.repeatBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.premierBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.safariBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.sportBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.timerBall))
-            || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.ultraBall))) {
-            return true;
-        }
-        return false;
+        return is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.beastBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.cherishBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.diveBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.dreamBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.duskBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.fastBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.friendBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.greatBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.gsBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.healBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.heavyBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.levelBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.loveBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.lureBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.luxuryBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.moonBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.nestBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.netBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.masterBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.parkBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.pokeBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.quickBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.repeatBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.premierBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.safariBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.sportBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.timerBall))
+                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.ultraBall));
     }
 
     public boolean isBlacksmithItem (ItemStack is) {

@@ -35,23 +35,16 @@ public class BossConqueror {
         EntityPixelmon pokemon = e.wpp.controlledPokemon.get(0).pokemon;
 
 
-        if (config.isSkillEnabled("Boss Conqueror")) {
-            if (config.isSkillTaskEnabled("Boss Conqueror", "Kill-Mega-bosses") && isMega(pokemon) && isBoss(pokemon)) {
-                experienceHandler.addPoints("Boss Conqueror", config.getEXPFromTask("Boss Conqueror", "Kill-Mega-bosses"), player);
-                if (config.isSkillPerkEnabled("Boss Conqueror")) {
-                    if (accounts.getLevel("Boss Conqueror", player) == config.getDefaultPerkLevel("Boss Conqueror") || accounts.getLevel("Boss Conqueror", player) == accounts.getNextPerkLevel("Boss Conqueror", player)) {
-                        accounts.setNextPerkLevel("Boss Conqueror", player);
-                        if (config.getDefaultPerkChance("Boss Conqueror") > 0) {
-                            if (accounts.getPerkChance("Boss Conqueror", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Boss Conqueror")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Boss Conqueror", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                                }
+        if (config.isSkillEnabled("Boss-Conqueror")) {
+            if (config.isSkillTaskEnabled("Boss-Conqueror", "Kill-Mega-bosses") && isMega(pokemon) && isBoss(pokemon)) {
+                experienceHandler.addPoints("Boss-Conqueror", config.getEXPFromTask("Boss-Conqueror", "Kill-Mega-bosses"), player);
+                if (config.isSkillPerkEnabled("Boss-Conqueror")) {
+                    if (accounts.getLevel("Boss-Conqueror", player) == config.getDefaultPerkLevel("Boss-Conqueror") || accounts.getLevel("Boss-Conqueror", player) == accounts.getNextPerkLevel("Boss-Conqueror", player)) {
+                        accounts.setNextPerkLevel("Boss-Conqueror", player);
+                        if (config.getDefaultPerkChance("Boss-Conqueror") > 0) {
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Boss-Conqueror")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
                             }
 
                         } else {
@@ -61,22 +54,15 @@ public class BossConqueror {
                     }
                 }
 
-            } else if (config.isSkillTaskEnabled("Boss Conqueror", "Kill-normal-bosses") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
-                experienceHandler.addPoints("Boss Conqueror", config.getEXPFromTask("Boss Conqueror", "Kill-normal-bosses"), player);
-                if (config.isSkillPerkEnabled("Boss Conqueror")) {
-                    if (accounts.getLevel("Boss Conqueror", player) == config.getDefaultPerkLevel("Boss Conqueror") || accounts.getLevel("Boss Conqueror", player) == accounts.getNextPerkLevel("Boss Conqueror", player)) {
-                        accounts.setNextPerkLevel("Boss Conqueror", player);
-                        if (config.getDefaultPerkChance("Boss Conqueror") > 0) {
-                            if (accounts.getPerkChance("Boss Conqueror", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Boss Conqueror")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Boss Conqueror", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                                }
+            } else if (config.isSkillTaskEnabled("Boss-Conqueror", "Kill-normal-bosses") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
+                experienceHandler.addPoints("Boss-Conqueror", config.getEXPFromTask("Boss-Conqueror", "Kill-normal-bosses"), player);
+                if (config.isSkillPerkEnabled("Boss-Conqueror")) {
+                    if (accounts.getLevel("Boss-Conqueror", player) == config.getDefaultPerkLevel("Boss-Conqueror") || accounts.getLevel("Boss-Conqueror", player) == accounts.getNextPerkLevel("Boss-Conqueror", player)) {
+                        accounts.setNextPerkLevel("Boss-Conqueror", player);
+                        if (config.getDefaultPerkChance("Boss-Conqueror") > 0) {
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Boss-Conqueror")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
                             }
                         } else {
                             player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
@@ -87,22 +73,15 @@ public class BossConqueror {
             }
         }
 
-        if (config.isSkillTaskEnabled("Poke Exterminator", "Kill-normal-Pokemon") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && !isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
-            experienceHandler.addPoints("Poke Exterminator", config.getEXPFromTask("Poke Exterminator", "Kill-normal-Pokemon"), player);
-            if (config.isSkillPerkEnabled("Poke Exterminator")) {
-                if (accounts.getLevel("Poke Exterminator", player) == config.getDefaultPerkLevel("Poke Exterminator") || accounts.getLevel("Poke Exterminator", player) == accounts.getNextPerkLevel("Poke Exterminator", player)) {
-                    accounts.setNextPerkLevel("Poke Exterminator", player);
-                    if (config.getDefaultPerkChance("Poke Exterminator") > 0) {
-                        if (accounts.getPerkChance("Poke Exterminator", player) == 0) {
-                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Poke Exterminator")) {
-                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                            }
-                        } else {
-                            if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Poke Exterminator", player)) {
-                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
-                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
-                            }
+        if (config.isSkillTaskEnabled("Poke-Exterminator", "Kill-normal-Pokemon") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && !isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
+            experienceHandler.addPoints("Poke-Exterminator", config.getEXPFromTask("Poke-Exterminator", "Kill-normal-Pokemon"), player);
+            if (config.isSkillPerkEnabled("Poke-Exterminator")) {
+                if (accounts.getLevel("Poke-Exterminator", player) == config.getDefaultPerkLevel("Poke-Exterminator") || accounts.getLevel("Poke-Exterminator", player) == accounts.getNextPerkLevel("Poke-Exterminator", player)) {
+                    accounts.setNextPerkLevel("Poke-Exterminator", player);
+                    if (config.getDefaultPerkChance("Poke-Exterminator") > 0) {
+                        if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Poke-Exterminator")) {
+                            player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " The boss dropped 3 extra Ultra Balls!"));
+                            Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " pixelmon:ultra_ball 3");
                         }
 
                     } else {

@@ -1,7 +1,7 @@
 package com.lypaka.pixelskills.Skills;
 
-import com.lypaka.pixelskills.PixelSkills;
 import com.lypaka.pixelskills.Config.ConfigManager;
+import com.lypaka.pixelskills.PixelSkills;
 import com.lypaka.pixelskills.Utils.AccountGetters;
 import com.lypaka.pixelskills.Utils.ConfigGetters;
 import com.lypaka.pixelskills.Utils.ExperienceHandler;
@@ -38,59 +38,30 @@ public class Breeder {
                     if (accounts.getLevel("Breeder", player) == config.getDefaultPerkLevel("Breeder") || accounts.getLevel("Breeder", player) == accounts.getNextPerkLevel("Breeder", player)) {
                         accounts.setNextPerkLevel("Breeder", player);
                         if (config.getDefaultPerkChance("Breeder") > 0) {
-                            if (accounts.getPerkChance("Breeder", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Breeder")) {
-                                    if (e.getEgg().stats.IVs.HP != 31) {
-                                        e.getEgg().stats.IVs.HP = ((e.getEgg().stats.IVs.HP / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.HP;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Attack != 31) {
-                                        e.getEgg().stats.IVs.Attack = ((e.getEgg().stats.IVs.Attack / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Attack;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Defence != 31) {
-                                        e.getEgg().stats.IVs.Defence = ((e.getEgg().stats.IVs.Defence / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Defence;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.SpAtt != 31) {
-                                        e.getEgg().stats.IVs.SpAtt = ((e.getEgg().stats.IVs.SpAtt / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpAtt;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.SpDef != 31) {
-                                        e.getEgg().stats.IVs.SpDef = ((e.getEgg().stats.IVs.SpDef / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpDef;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Speed != 31) {
-                                        e.getEgg().stats.IVs.Speed = ((e.getEgg().stats.IVs.Speed / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Speed;
-                                        e.getEgg().updateStats();
-                                    }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Breeder")) {
+                                if (e.getEgg().stats.IVs.HP != 31) {
+                                    e.getEgg().stats.IVs.HP = ((e.getEgg().stats.IVs.HP / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.HP;
+                                    e.getEgg().updateStats();
                                 }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Breeder", player)) {
-                                    if (e.getEgg().stats.IVs.HP != 31) {
-                                        e.getEgg().stats.IVs.HP = ((e.getEgg().stats.IVs.HP / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.HP;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Attack != 31) {
-                                        e.getEgg().stats.IVs.Attack = ((e.getEgg().stats.IVs.Attack / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Attack;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Defence != 31) {
-                                        e.getEgg().stats.IVs.Defence = ((e.getEgg().stats.IVs.Defence / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Defence;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.SpAtt != 31) {
-                                        e.getEgg().stats.IVs.SpAtt = ((e.getEgg().stats.IVs.SpAtt / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpAtt;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.SpDef != 31) {
-                                        e.getEgg().stats.IVs.SpDef = ((e.getEgg().stats.IVs.SpDef / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpDef;
-                                        e.getEgg().updateStats();
-                                    }
-                                    if (e.getEgg().stats.IVs.Speed != 31) {
-                                        e.getEgg().stats.IVs.Speed = ((e.getEgg().stats.IVs.Speed / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Speed;
-                                        e.getEgg().updateStats();
-                                    }
+                                if (e.getEgg().stats.IVs.Attack != 31) {
+                                    e.getEgg().stats.IVs.Attack = ((e.getEgg().stats.IVs.Attack / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Attack;
+                                    e.getEgg().updateStats();
+                                }
+                                if (e.getEgg().stats.IVs.Defence != 31) {
+                                    e.getEgg().stats.IVs.Defence = ((e.getEgg().stats.IVs.Defence / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Defence;
+                                    e.getEgg().updateStats();
+                                }
+                                if (e.getEgg().stats.IVs.SpAtt != 31) {
+                                    e.getEgg().stats.IVs.SpAtt = ((e.getEgg().stats.IVs.SpAtt / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpAtt;
+                                    e.getEgg().updateStats();
+                                }
+                                if (e.getEgg().stats.IVs.SpDef != 31) {
+                                    e.getEgg().stats.IVs.SpDef = ((e.getEgg().stats.IVs.SpDef / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.SpDef;
+                                    e.getEgg().updateStats();
+                                }
+                                if (e.getEgg().stats.IVs.Speed != 31) {
+                                    e.getEgg().stats.IVs.Speed = ((e.getEgg().stats.IVs.Speed / 31) * (accounts.getLevel("Breeder", player) / 2)) + e.getEgg().stats.IVs.Speed;
+                                    e.getEgg().updateStats();
                                 }
                             }
                         }
@@ -127,18 +98,10 @@ public class Breeder {
                 if (config.isSkillPerkEnabled("Breeder")) {
                     if (accounts.getLevel("Breeder", player) == config.getDefaultPerkLevel("Breeder") || accounts.getLevel("Breeder", player) == accounts.getNextPerkLevel("Breeder", player)) {
                         if (config.getDefaultPerkChance("Breeder") > 0) {
-                            if (accounts.getPerkChance("Breeder", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Breeder")) {
-                                    double mod = (accounts.getLevel("Breeder", player) * 0.01);
-                                    double newSteps = mod * e.getStepsRequired();
-                                    e.setStepsRequired((int) (e.getStepsRequired() - newSteps));
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Breeder", player)) {
-                                    double mod = (accounts.getLevel("Breeder", player) * 0.01);
-                                    double newSteps = mod * e.getStepsRequired();
-                                    e.setStepsRequired((int) (e.getStepsRequired() - newSteps));
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Breeder")) {
+                                double mod = (accounts.getLevel("Breeder", player) * 0.01);
+                                double newSteps = mod * e.getStepsRequired();
+                                e.setStepsRequired((int) (e.getStepsRequired() - newSteps));
                             }
                         } else {
                             double mod = (accounts.getLevel("Breeder", player) * 0.01);

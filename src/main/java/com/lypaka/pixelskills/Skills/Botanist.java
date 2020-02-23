@@ -34,16 +34,9 @@ public class Botanist {
                     if (accounts.getLevel("Botanist", player) == config.getDefaultPerkLevel("Botanist") || accounts.getLevel("Botanist", player) == accounts.getNextPerkLevel("Botanist", player)) {
                         accounts.setNextPerkLevel("Botanist", player);
                         if (config.getDefaultPerkChance("Botanist") > 0) {
-                            if (accounts.getPerkChance("Botanist", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Apricorns!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 2");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Botanist", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Apricorns!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 2");
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Apricorns!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 2");
                             }
                         } else {
                             player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Apricorns!"));
@@ -66,17 +59,11 @@ public class Botanist {
                     if (accounts.getLevel("Botanist", player) == config.getDefaultPerkLevel("Botanist") || accounts.getLevel("Botanist", player) == accounts.getNextPerkLevel("Botanist", player)) {
                         accounts.setNextPerkLevel("Botanist", player);
                         if (config.getDefaultPerkChance("Botanist") > 0) {
-                            if (accounts.getPerkChance("Botanist", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Berries!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 2");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Botanist", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Berries!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 2");
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Berries!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 2");
                             }
+
 
                         } else {
                             player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found some hidden Berries!"));
@@ -99,16 +86,9 @@ public class Botanist {
                     if (accounts.getLevel("Botanist", player) == config.getDefaultPerkLevel("Botanist") || accounts.getLevel("Botanist", player) == accounts.getNextPerkLevel("Botanist", player)) {
                         accounts.setNextPerkLevel("Botanist", player);
                         if (config.getDefaultPerkChance("Botanist") > 0) {
-                            if (accounts.getPerkChance("Botanist", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Apricorn budding off of that one!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 1");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Botanist", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Apricorn budding off of that one!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 1");
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Apricorn budding off of that one!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.apricorn.name() + " 1");
                             }
 
                         } else {
@@ -132,16 +112,9 @@ public class Botanist {
                     if (accounts.getLevel("Botanist", player) == config.getDefaultPerkLevel("Botanist") || accounts.getLevel("Botanist", player) == accounts.getNextPerkLevel("Botanist", player)) {
                         accounts.setNextPerkLevel("Botanist", player);
                         if (config.getDefaultPerkChance("Botanist") > 0) {
-                            if (accounts.getPerkChance("Botanist", player) == 0) {
-                                if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Berry budding off of that one!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 1");
-                                }
-                            } else {
-                                if (PixelSkills.getRandom().nextInt(100) < accounts.getPerkChance("Botanist", player)) {
-                                    player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Berry budding off of that one!"));
-                                    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 1");
-                                }
+                            if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Botanist")) {
+                                player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " You found a little Berry budding off of that one!"));
+                                Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "give " + player.getName() + " " + e.berry.name() + " 1");
                             }
 
                         } else {

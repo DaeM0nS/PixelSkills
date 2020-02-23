@@ -35,7 +35,9 @@ public class ConfigManager {
      */
     public static void setup(Path folder){
         dir = folder;
-        config = dir.resolve(FILE_NAMES[0]);
+        for (int i = 0; i <= FILE_NAMES.length - 1; i++) {
+            config = dir.resolve(FILE_NAMES[i]);
+        }
         load();
     }
 
@@ -50,7 +52,10 @@ public class ConfigManager {
             }
 
             //Create or locate file and load configuration file into storage.
-            PixelSkills.getContainer().getAsset(FILE_NAMES[0]).get().copyToFile(config, false, true);
+            for (int i = 0; i <= FILE_NAMES.length - 1; i++) {
+                PixelSkills.getContainer().getAsset(FILE_NAMES[i]).get().copyToFile(config, false, true);
+            }
+
 
             configLoad = HoconConfigurationLoader.builder().setPath(config).build();
 
