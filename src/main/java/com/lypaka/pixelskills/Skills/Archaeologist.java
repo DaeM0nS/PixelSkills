@@ -5,6 +5,8 @@ import com.lypaka.pixelskills.Utils.AccountGetters;
 import com.lypaka.pixelskills.Utils.ConfigGetters;
 import com.lypaka.pixelskills.Utils.ExperienceHandler;
 import com.pixelmonmod.pixelmon.api.events.PixelmonReceivedEvent;
+import com.pixelmonmod.pixelmon.entities.pixelmon.stats.StatsType;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.spongepowered.api.entity.living.player.Player;
@@ -37,56 +39,56 @@ public class Archaeologist {
                             if (config.getDefaultPerkChance("Archaeologist") > 0) {
                                 if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Archaeologist")) {
                                     player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                    if (e.pokemon.stats.IVs.HP != 31) {
-                                        e.pokemon.stats.IVs.HP = ((e.pokemon.stats.IVs.HP / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.HP;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.hp != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.HP, ((e.pokemon.getStats().ivs.hp / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.hp);
+                                        //e.pokemon.updateStats();
                                     }
-                                    if (e.pokemon.stats.IVs.Attack != 31) {
-                                        e.pokemon.stats.IVs.Attack = ((e.pokemon.stats.IVs.Attack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Attack;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.attack != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.Attack, ((e.pokemon.getStats().ivs.attack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.attack);
+                                        //e.pokemon.updateStats();
                                     }
-                                    if (e.pokemon.stats.IVs.Defence != 31) {
-                                        e.pokemon.stats.IVs.Defence = ((e.pokemon.stats.IVs.Defence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Defence;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.defence != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.Defence, ((e.pokemon.getStats().ivs.defence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.defence);
+                                        //e.pokemon.updateStats();
                                     }
-                                    if (e.pokemon.stats.IVs.SpAtt != 31) {
-                                        e.pokemon.stats.IVs.SpAtt = ((e.pokemon.stats.IVs.SpAtt / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.SpAtt;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.specialAttack != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.SpecialAttack, ((e.pokemon.getStats().ivs.specialAttack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.specialAttack);
+                                        //e.pokemon.updateStats();
                                     }
-                                    if (e.pokemon.stats.IVs.SpDef != 31) {
-                                        e.pokemon.stats.IVs.SpDef = ((e.pokemon.stats.IVs.SpDef / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.SpDef;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.specialDefence != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.SpecialDefence, ((e.pokemon.getStats().ivs.specialDefence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.specialDefence);
+                                        //e.pokemon.updateStats();
                                     }
-                                    if (e.pokemon.stats.IVs.Speed != 31) {
-                                        e.pokemon.stats.IVs.Speed = ((e.pokemon.stats.IVs.Speed / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Speed;
-                                        e.pokemon.updateStats();
+                                    if (e.pokemon.getStats().ivs.speed != 31) {
+                                        e.pokemon.getStats().ivs.set(StatsType.Speed, ((e.pokemon.getStats().ivs.speed / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.speed);
+                                        //e.pokemon.updateStats();
                                     }
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                if (e.pokemon.stats.IVs.HP != 31) {
-                                    e.pokemon.stats.IVs.HP = ((e.pokemon.stats.IVs.HP / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.HP;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.hp != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.HP, ((e.pokemon.getStats().ivs.hp / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.hp);
+                                    //e.pokemon.updateStats();
                                 }
-                                if (e.pokemon.stats.IVs.Attack != 31) {
-                                    e.pokemon.stats.IVs.Attack = ((e.pokemon.stats.IVs.Attack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Attack;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.attack != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.Attack, ((e.pokemon.getStats().ivs.attack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.attack);
+                                    //e.pokemon.updateStats();
                                 }
-                                if (e.pokemon.stats.IVs.Defence != 31) {
-                                    e.pokemon.stats.IVs.Defence = ((e.pokemon.stats.IVs.Defence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Defence;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.defence != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.Defence, ((e.pokemon.getStats().ivs.defence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.defence);
+                                    //e.pokemon.updateStats();
                                 }
-                                if (e.pokemon.stats.IVs.SpAtt != 31) {
-                                    e.pokemon.stats.IVs.SpAtt = ((e.pokemon.stats.IVs.SpAtt / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.SpAtt;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.specialAttack != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.SpecialAttack, ((e.pokemon.getStats().ivs.specialAttack / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.specialAttack);
+                                    //e.pokemon.updateStats();
                                 }
-                                if (e.pokemon.stats.IVs.SpDef != 31) {
-                                    e.pokemon.stats.IVs.SpDef = ((e.pokemon.stats.IVs.SpDef / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.SpDef;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.specialDefence != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.SpecialDefence, ((e.pokemon.getStats().ivs.specialDefence / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.specialDefence);
+                                    //e.pokemon.updateStats();
                                 }
-                                if (e.pokemon.stats.IVs.Speed != 31) {
-                                    e.pokemon.stats.IVs.Speed = ((e.pokemon.stats.IVs.Speed / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.stats.IVs.Speed;
-                                    e.pokemon.updateStats();
+                                if (e.pokemon.getStats().ivs.speed != 31) {
+                                    e.pokemon.getStats().ivs.set(StatsType.Speed, ((e.pokemon.getStats().ivs.speed / 31) * (accounts.getLevel("Archaeologist", player) / 2)) + e.pokemon.getStats().ivs.speed);
+                                    //e.pokemon.updateStats();
                                 }
                             }
                         }

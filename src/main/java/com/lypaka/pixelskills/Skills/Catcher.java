@@ -31,7 +31,7 @@ public class Catcher {
     @SubscribeEvent
     public void onCatch (CaptureEvent.SuccessfulCapture e) {
         Player player = (Player) e.player;
-        if (e.getPokemon().isShiny()) {
+        if (e.getPokemon().getPokemonData().isShiny()) {
 
             if (config.isSkillEnabled("Shiny-Hunter")) {
                 if (config.isSkillTaskEnabled("Shiny-Hunter", "Catching-shiny-Pokemon")) {
@@ -42,55 +42,55 @@ public class Catcher {
                             if (config.getDefaultPerkChance("Shiny-Hunter") > 0) {
                                 if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Shiny-Hunter")) {
                                     player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                    if (e.getPokemon().stats.IVs.Attack != 31) {
-                                        e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Defence != 31) {
-                                        e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                        e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                        e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Speed != 31) {
-                                        e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.HP != 31) {
-                                        e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                         e.getPokemon().updateStats();
                                     }
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                if (e.getPokemon().stats.IVs.Attack != 31) {
-                                    e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Defence != 31) {
-                                    e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                    e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                    e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Speed != 31) {
-                                    e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.HP != 31) {
-                                    e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Shiny-Hunter", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                     e.getPokemon().updateStats();
                                 }
                             }
@@ -109,55 +109,55 @@ public class Catcher {
                             if (config.getDefaultPerkChance("Legendary-Master") > 0) {
                                 if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Legendary-Master")) {
                                     player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                    if (e.getPokemon().stats.IVs.Attack != 31) {
-                                        e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Defence != 31) {
-                                        e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                        e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                        e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Speed != 31) {
-                                        e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.HP != 31) {
-                                        e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                         e.getPokemon().updateStats();
                                     }
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                if (e.getPokemon().stats.IVs.Attack != 31) {
-                                    e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Defence != 31) {
-                                    e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                    e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                    e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Speed != 31) {
-                                    e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.HP != 31) {
-                                    e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Legendary-Master", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                     e.getPokemon().updateStats();
                                 }
                             }
@@ -166,7 +166,7 @@ public class Catcher {
                 }
             }
 
-        } else if (!e.getPokemon().isShiny() && !isLegendary(e.getPokemon())) {
+        } else if (!e.getPokemon().getPokemonData().isShiny() && !isLegendary(e.getPokemon())) {
 
             if (config.isSkillEnabled("Catcher")) {
                 if (config.isSkillTaskEnabled("Catcher", "Catching-normal-Pokemon")) {
@@ -177,55 +177,55 @@ public class Catcher {
                             if (config.getDefaultPerkChance("Catcher") > 0) {
                                 if (PixelSkills.getRandom().nextInt(100) < config.getDefaultPerkChance("Catcher")) {
                                     player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                    if (e.getPokemon().stats.IVs.Attack != 31) {
-                                        e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Defence != 31) {
-                                        e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                        e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                        e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.Speed != 31) {
-                                        e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                         e.getPokemon().updateStats();
                                     }
-                                    if (e.getPokemon().stats.IVs.HP != 31) {
-                                        e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                    if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                        e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                         e.getPokemon().updateStats();
                                     }
                                 }
                             } else {
                                 player.sendMessage(Text.of(TextColors.GOLD, "[", TextColors.DARK_RED, "PixelSkills", TextColors.GOLD, "]", TextColors.WHITE, " Your experience tells you this Pokemon will be a good one!"));
-                                if (e.getPokemon().stats.IVs.Attack != 31) {
-                                    e.getPokemon().stats.IVs.Attack = ((e.getPokemon().stats.IVs.Attack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Attack;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.attack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.attack = ((e.getPokemon().getPokemonData().getStats().ivs.attack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.attack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Defence != 31) {
-                                    e.getPokemon().stats.IVs.Defence = ((e.getPokemon().stats.IVs.Defence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Defence;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.defence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.defence = ((e.getPokemon().getPokemonData().getStats().ivs.defence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.defence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpAtt != 31) {
-                                    e.getPokemon().stats.IVs.SpAtt = ((e.getPokemon().stats.IVs.SpAtt / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.SpAtt;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialAttack != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialAttack = ((e.getPokemon().getPokemonData().getStats().ivs.specialAttack / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialAttack;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.SpDef != 31) {
-                                    e.getPokemon().stats.IVs.SpDef = ((e.getPokemon().stats.IVs.SpDef / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.SpDef;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.specialDefence != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.specialDefence = ((e.getPokemon().getPokemonData().getStats().ivs.specialDefence / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.specialDefence;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.Speed != 31) {
-                                    e.getPokemon().stats.IVs.Speed = ((e.getPokemon().stats.IVs.Speed / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.Speed;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.speed != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.speed = ((e.getPokemon().getPokemonData().getStats().ivs.speed / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.speed;
                                     e.getPokemon().updateStats();
                                 }
-                                if (e.getPokemon().stats.IVs.HP != 31) {
-                                    e.getPokemon().stats.IVs.HP = ((e.getPokemon().stats.IVs.HP / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().stats.IVs.HP;
+                                if (e.getPokemon().getPokemonData().getStats().ivs.hp != 31) {
+                                    e.getPokemon().getPokemonData().getStats().ivs.hp = ((e.getPokemon().getPokemonData().getStats().ivs.hp / 31) * (accounts.getLevel("Catcher", player) / 2)) + e.getPokemon().getPokemonData().getStats().ivs.hp;
                                     e.getPokemon().updateStats();
                                 }
                             }

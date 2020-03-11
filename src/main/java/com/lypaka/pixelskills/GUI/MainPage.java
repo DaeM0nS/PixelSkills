@@ -1,16 +1,10 @@
 package com.lypaka.pixelskills.GUI;
 
-import com.codehusky.huskyui.StateContainer;
-import com.codehusky.huskyui.states.Page;
-import com.codehusky.huskyui.states.action.ActionType;
-import com.codehusky.huskyui.states.action.runnable.RunnableAction;
-import com.codehusky.huskyui.states.element.ActionableElement;
-import com.codehusky.huskyui.states.element.Element;
-import com.google.common.collect.Lists;
-import com.lypaka.pixelskills.PixelSkills;
-import com.lypaka.pixelskills.Utils.AccountGetters;
-import com.pixelmonmod.pixelmon.config.*;
-import com.pixelmonmod.pixelmon.items.PixelmonItemBlock;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
@@ -20,12 +14,36 @@ import org.spongepowered.api.item.inventory.property.InventoryDimension;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
-import java.util.Objects;
+import com.codehusky.huskyui.StateContainer;
+import com.codehusky.huskyui.states.Page;
+import com.codehusky.huskyui.states.action.ActionType;
+import com.codehusky.huskyui.states.action.runnable.RunnableAction;
+import com.codehusky.huskyui.states.element.ActionableElement;
+import com.codehusky.huskyui.states.element.Element;
+import com.google.common.collect.Lists;
+import com.lypaka.pixelskills.PixelSkills;
+import com.lypaka.pixelskills.Utils.AccountGetters;
+import com.pixelmonmod.pixelmon.Pixelmon;
+import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
+import com.pixelmonmod.pixelmon.config.PixelmonItems;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsApricorns;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsFossils;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsHeld;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsPokeballs;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsTools;
+import com.pixelmonmod.pixelmon.entities.pixelmon.EnumSpecialTexture;
+import com.pixelmonmod.pixelmon.entities.pixelmon.stats.Gender;
+import com.pixelmonmod.pixelmon.enums.EnumSpecies;
+import com.pixelmonmod.pixelmon.items.PixelmonItemBlock;
+import com.pixelmonmod.pixelmon.util.helpers.SpriteHelper;
+
+import net.minecraft.nbt.NBTTagCompound;
 
 public class MainPage {
 
     private static AccountGetters accounts = PixelSkills.getAccountGs();
-
+    private final static ItemType spriteItem = Sponge.getRegistry().getType(ItemType.class, "pixelmon:pixelmon_sprite").get();
+    
     public static void openMainGUI(Player player) {
         StateContainer container = new StateContainer();
         Page.PageBuilder main = Page.builder()
@@ -71,17 +89,31 @@ public class MainPage {
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Fisherman"))
                         .build()
         ));
+        
+        Pokemon pokemon = Pixelmon.pokemonFactory.create(EnumSpecies.Venusaur);
+        pokemon.setShiny(true);
+        NBTTagCompound partyNbtSlot = new NBTTagCompound();
+    	pokemon.writeToNBT(partyNbtSlot);
+        Optional<ItemStack> itemStackForNBT = getItemStackForNBT(partyNbtSlot);
+        
         main.putElement(18, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Shiny Hunter").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType((ItemType) Objects.requireNonNull(PixelmonItemBlock.getByNameOrId("pixelmon:shinypokedoll_venusaur")))
+                        .itemType((ItemType) itemStackForNBT.get())
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Shiny Hunter"))
                         .build()
         ));
+        
+        pokemon = Pixelmon.pokemonFactory.create(EnumSpecies.Regirock);
+        pokemon.setShiny(false);
+        partyNbtSlot = new NBTTagCompound();
+    	pokemon.writeToNBT(partyNbtSlot);
+        itemStackForNBT = getItemStackForNBT(partyNbtSlot);
+
         main.putElement(20, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Legendary Master").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType((ItemType) Objects.requireNonNull(PixelmonItemBlock.getByNameOrId("pixelmon:pokedoll_regirock")))
+                        .itemType((ItemType) itemStackForNBT.get())
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Legendary Master"))
                         .build()
         ));
@@ -102,7 +134,7 @@ public class MainPage {
         main.putElement(26, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Miner").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType((ItemType) PixelmonItemsTools.icestonePickaxeItem)
+                        .itemType((ItemType) PixelmonItemsTools.thunderstonePickaxeItem)
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Miner"))
                         .build()
         ));
@@ -200,6 +232,25 @@ public class MainPage {
 
     private static int getEXPTOLEVELUPfromSkill(String skill, Player player) {
         return accounts.getEXPtoLvl(skill, player);
+    }
+    private static Optional<ItemStack> getItemStackForNBT(NBTTagCompound slotTag) {
+        if (slotTag == null) {
+            return Optional.empty();
+        }
+        String filePath = "pixelmon:sprites/";
+        String pokemonID = slotTag.getString("Name");
+        EnumSpecies enumPokemon = EnumSpecies.getFromNameAnyCase(pokemonID);
+        boolean isShiny = slotTag.getBoolean("IsShiny");
+        if (isShiny) {
+            filePath = filePath + "shiny";
+        }
+        filePath = filePath + "pokemon/" + String.format("%03d", enumPokemon.getNationalPokedexInteger()) + SpriteHelper.getSpriteExtra(pokemonID, 0, Gender.Male, EnumSpecialTexture.None.id);
+        NBTTagCompound spriteTag = new NBTTagCompound();
+        spriteTag.setString("SpriteName", filePath);
+        ItemStack spriteStack = ItemStack.of(spriteItem, 1);
+        spriteStack = ItemStack.builder().fromContainer(spriteStack.toContainer().set(DataQuery.of("UnsafeData", "SpriteName"), filePath)).build();
+        spriteStack.offer(Keys.DISPLAY_NAME, Text.of(pokemonID));
+        return Optional.of(spriteStack);
     }
 
 }

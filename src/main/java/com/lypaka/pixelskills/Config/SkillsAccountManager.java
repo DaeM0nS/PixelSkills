@@ -21,7 +21,7 @@ public class SkillsAccountManager {
     private File accountsFile;
 
     public SkillsAccountManager () {
-        accountManager = PixelSkills.INSTANCE.getAccountManager();
+        setAccountManager(PixelSkills.INSTANCE.getAccountManager());
         logger = PixelSkills.getLogger();
         setupAccountConfig();
     }
@@ -144,6 +144,14 @@ public class SkillsAccountManager {
         return accountConfig;
 
     }
+
+	public SkillsAccountManager getAccountManager() {
+		return accountManager;
+	}
+
+	public void setAccountManager(SkillsAccountManager accountManager) {
+		this.accountManager = accountManager;
+	}
 
 
 

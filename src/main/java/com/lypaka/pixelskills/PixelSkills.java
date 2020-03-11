@@ -32,10 +32,11 @@ import java.util.Random;
 @Plugin(
         id = "pixelskills",
         name = "PixelSkills",
-        version = "2.0.0",
+        version = "2.0.0-DaeM0nS-Reforged",
         description = "A Pixelmon Generations skills plugin",
         authors = {
-                "Lypaka"
+                "Lypaka",
+                "DaeM0nS"
         }
 )
 public class PixelSkills {
@@ -81,6 +82,7 @@ public class PixelSkills {
         Pixelmon.EVENT_BUS.register(new FierceBattler());
         Sponge.getEventManager().registerListeners(this, new Crafter());
         MinecraftForge.EVENT_BUS.register(new Miner());
+        MinecraftForge.EVENT_BUS.register(new Breeder());
 
         Sponge.getCommandManager().register(this, PixelSkillsCmd.create(), "pixelskills");
     }

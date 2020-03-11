@@ -147,7 +147,7 @@ public class Crafter {
 
     public boolean isCrafterItem (ItemStack is) {
         return is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.beastBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.cherishBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.diveBall))
-                || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.dreamBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.duskBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.fastBall))
+                || /*is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.dreamBall)) || */is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.duskBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.fastBall))
                 || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.friendBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.greatBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.gsBall))
                 || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.healBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.heavyBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.levelBall))
                 || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.loveBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.lureBall)) || is.getType().matches(ItemStack.of((ItemType) PixelmonItemsPokeballs.luxuryBall))

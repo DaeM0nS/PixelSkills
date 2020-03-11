@@ -6,6 +6,8 @@ import com.lypaka.pixelskills.Utils.ConfigGetters;
 import com.lypaka.pixelskills.Utils.ExperienceHandler;
 import com.pixelmonmod.pixelmon.api.events.BeatWildPixelmonEvent;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
+import com.pixelmonmod.pixelmon.enums.forms.EnumMega;
+
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -32,7 +34,7 @@ public class BossConqueror {
     @SubscribeEvent
     public void onPokeKill (BeatWildPixelmonEvent e) {
         Player player = (Player) e.player;
-        EntityPixelmon pokemon = e.wpp.controlledPokemon.get(0).pokemon;
+        EntityPixelmon pokemon = e.wpp.controlledPokemon.get(0).entity;
 
 
         if (config.isSkillEnabled("Boss-Conqueror")) {
@@ -54,7 +56,7 @@ public class BossConqueror {
                     }
                 }
 
-            } else if (config.isSkillTaskEnabled("Boss-Conqueror", "Kill-normal-bosses") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
+            } else if (config.isSkillTaskEnabled("Boss-Conqueror", "Kill-normal-bosses") && !isMega(e.wpp.controlledPokemon.get(0).entity) && isBoss(e.wpp.controlledPokemon.get(0).entity)) {
                 experienceHandler.addPoints("Boss-Conqueror", config.getEXPFromTask("Boss-Conqueror", "Kill-normal-bosses"), player);
                 if (config.isSkillPerkEnabled("Boss-Conqueror")) {
                     if (accounts.getLevel("Boss-Conqueror", player) == config.getDefaultPerkLevel("Boss-Conqueror") || accounts.getLevel("Boss-Conqueror", player) == accounts.getNextPerkLevel("Boss-Conqueror", player)) {
@@ -73,7 +75,7 @@ public class BossConqueror {
             }
         }
 
-        if (config.isSkillTaskEnabled("Poke-Exterminator", "Kill-normal-Pokemon") && !isMega(e.wpp.controlledPokemon.get(0).pokemon) && !isBoss(e.wpp.controlledPokemon.get(0).pokemon)) {
+        if (config.isSkillTaskEnabled("Poke-Exterminator", "Kill-normal-Pokemon") && !isMega(e.wpp.controlledPokemon.get(0).entity) && !isBoss(e.wpp.controlledPokemon.get(0).entity)) {
             experienceHandler.addPoints("Poke-Exterminator", config.getEXPFromTask("Poke-Exterminator", "Kill-normal-Pokemon"), player);
             if (config.isSkillPerkEnabled("Poke-Exterminator")) {
                 if (accounts.getLevel("Poke-Exterminator", player) == config.getDefaultPerkLevel("Poke-Exterminator") || accounts.getLevel("Poke-Exterminator", player) == accounts.getNextPerkLevel("Poke-Exterminator", player)) {
@@ -92,9 +94,13 @@ public class BossConqueror {
             }
         }
     }
-
+/*
     private boolean isMega(EntityPixelmon pokemon) {
         return pokemon.isMega;
+    }
+    */
+    private boolean isMega(EntityPixelmon pokemon) {
+        return pokemon.getFormEnum() instanceof EnumMega;
     }
 
     private boolean isBoss(EntityPixelmon pokemon) {
