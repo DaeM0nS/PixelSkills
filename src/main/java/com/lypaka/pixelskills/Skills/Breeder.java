@@ -92,15 +92,12 @@ public class Breeder {
 
     @SubscribeEvent
     public void onEggHatch (EggHatchEvent e) {
-        if (ConfigManager.getConfigNode("Skills", "Breeder", "isEnabled").getValue().equals(true)) {
-            Player player = (Player) e.pokemon.getOwnerPlayer();
-            
-            if (config.isSkillEnabled("Breeder")) {
-                if (config.isSkillTaskEnabled("Breeder", "Hatching-eggs")) {
-                    experienceHandler.addPoints("Breeder", config.getEXPFromTask("Breeder", "Making-eggs"), player);
-                }
+        if (config.isSkillEnabled("Breeder")) {
+            if (config.isSkillTaskEnabled("Breeder", "Hatching-eggs")) {
+                Player player = (Player) e.pokemon.getOwnerPlayer();
+                experienceHandler.addPoints("Breeder", config.getEXPFromTask("Breeder", "Making-eggs"), player);
             }
-        }
+        }        
     }
 
     @SubscribeEvent

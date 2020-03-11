@@ -42,7 +42,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class MainPage {
 
     private static AccountGetters accounts = PixelSkills.getAccountGs();
-    private final static ItemType spriteItem = Sponge.getRegistry().getType(ItemType.class, "pixelmon:pixelmon_sprite").get();
     
     public static void openMainGUI(Player player) {
         StateContainer container = new StateContainer();
@@ -104,16 +103,16 @@ public class MainPage {
                         .build()
         ));
         
-        pokemon = Pixelmon.pokemonFactory.create(EnumSpecies.Regirock);
-        pokemon.setShiny(false);
-        partyNbtSlot = new NBTTagCompound();
-    	pokemon.writeToNBT(partyNbtSlot);
-        itemStackForNBT = getItemStackForNBT(partyNbtSlot);
+        Pokemon pokemon2 = Pixelmon.pokemonFactory.create(EnumSpecies.Regirock);
+        pokemon2.setShiny(false);
+        NBTTagCompound partyNbtSlot2 = new NBTTagCompound();
+    	pokemon2.writeToNBT(partyNbtSlot2);
+        Optional<ItemStack> itemStackForNBT2 = getItemStackForNBT(partyNbtSlot2);
 
         main.putElement(20, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Legendary Master").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType(itemStackForNBT.get().getType())
+                        .itemType(itemStackForNBT2.get().getType())
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Legendary Master"))
                         .build()
         ));
@@ -247,7 +246,7 @@ public class MainPage {
         filePath = filePath + "pokemon/" + String.format("%03d", enumPokemon.getNationalPokedexInteger()) + SpriteHelper.getSpriteExtra(pokemonID, 0, Gender.Male, EnumSpecialTexture.None.id);
         NBTTagCompound spriteTag = new NBTTagCompound();
         spriteTag.setString("SpriteName", filePath);
-        ItemStack spriteStack = ItemStack.of(spriteItem, 1);
+        ItemStack spriteStack = ItemStack.of(Sponge.getRegistry().getType(ItemType.class, "pixelmon:pixelmon_sprite").get(), 1);
         spriteStack = ItemStack.builder().fromContainer(spriteStack.toContainer().set(DataQuery.of("UnsafeData", "SpriteName"), filePath)).build();
         spriteStack.offer(Keys.DISPLAY_NAME, Text.of(pokemonID));
         return Optional.of(spriteStack);
