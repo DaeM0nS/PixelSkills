@@ -99,7 +99,7 @@ public class MainPage {
         main.putElement(18, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Shiny Hunter").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType((ItemType) itemStackForNBT.get())
+                        .itemType(itemStackForNBT.get().getType())
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Shiny Hunter"))
                         .build()
         ));
@@ -113,7 +113,7 @@ public class MainPage {
         main.putElement(20, new ActionableElement(
                 new RunnableAction(container, ActionType.NONE, "", c -> openStatsPage(container, player, "Legendary Master").openState(player, "modifiers")),
                 ItemStack.builder()
-                        .itemType((ItemType) itemStackForNBT.get())
+                        .itemType(itemStackForNBT.get().getType())
                         .add(Keys.DISPLAY_NAME, Text.of(TextColors.WHITE, "Legendary Master"))
                         .build()
         ));
